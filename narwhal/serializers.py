@@ -4,7 +4,7 @@ from .models import Relatorio, Circuito, Imagem
 class CircuitoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Circuito
-        fields = '__all__'
+        fields = ['modelo', 'fase', 'disjuntor', 'descricao', 'condutor', 'corrente']
 
 class ImagemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,6 +35,7 @@ class RelatorioSerializer(serializers.ModelSerializer):
             imagens_data = validated_data.pop('imagens_do_relatorio')
         if 'circuitos_do_relatorio' in validated_data:
             circuitos_data = validated_data.pop('circuitos_do_relatorio')
+            print("Circuitos data: ")
 
         relatorio = Relatorio.objects.create(**validated_data)
 
@@ -42,7 +43,7 @@ class RelatorioSerializer(serializers.ModelSerializer):
             Imagem.objects.create(rel_pai=relatorio, img=imagem_data)
         for circuito_data in circuitos_data:
             Circuito.objects.create(rel_pai=relatorio, **circuito_data)
-            
+
         return relatorio
 
 class ListaImagensPorRelatorioSerializer(serializers.ModelSerializer):
