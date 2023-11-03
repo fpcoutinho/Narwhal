@@ -1,6 +1,6 @@
 from rest_framework import viewsets, generics
-from narwhal.models import Relatorio, Circuito, Imagens
-from narwhal.serializers import RelatorioSerializer, CircuitoSerializer, ImagensSerializer
+from narwhal.models import Relatorio, Circuito, Imagem
+from narwhal.serializers import RelatorioSerializer, CircuitoSerializer, ImagemSerializer, ListaImagensPorRelatorioSerializer, ListaCircuitosPorRelatorioSerializer
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -16,8 +16,24 @@ class CircuitoViewSet(viewsets.ModelViewSet):
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
-class ImagensViewSet(viewsets.ModelViewSet):
-    queryset = Imagens.objects.all()
-    serializer_class = ImagensSerializer
+class ImagemViewSet(viewsets.ModelViewSet):
+    queryset = Imagem.objects.all()
+    serializer_class = ImagemSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class ListaImagensPorRelatorio(generics.ListAPIView):
+    def get_queryset(self):
+        queryset = Imagem.objects.filter(rel_pai__pk=self.kwargs['rel_id'])
+        return queryset
+    serializer_class = ListaImagensPorRelatorioSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class ListaCircuitosPorRelatorio(generics.ListAPIView):
+    def get_queryset(self):
+        queryset = Circuito.objects.filter(rel_pai__pk=self.kwargs['rel_id'])
+        return queryset
+    serializer_class = ListaCircuitosPorRelatorioSerializer
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]

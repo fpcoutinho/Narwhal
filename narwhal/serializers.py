@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Relatorio, Circuito, Imagens
+from .models import Relatorio, Circuito, Imagem
 
 class RelatorioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,7 +11,17 @@ class CircuitoSerializer(serializers.ModelSerializer):
         model = Circuito
         fields = '__all__'
 
-class ImagensSerializer(serializers.ModelSerializer):
+class ImagemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Imagens
+        model = Imagem
         fields = '__all__'
+
+class ListaImagensPorRelatorioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Imagem
+        fields = ['id', 'img']
+
+class ListaCircuitosPorRelatorioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Circuito
+        fields = ['id', 'modelo', 'fase', 'disjuntor', 'descricao', 'condutor', 'corrente']

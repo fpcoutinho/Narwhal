@@ -3,12 +3,12 @@ from io import BytesIO
 from django.http import FileResponse
 from docxtpl import DocxTemplate, InlineImage
 from docx.shared import Mm
-from .models import Relatorio, Circuito, Imagens
+from .models import Relatorio, Circuito, Imagem
 
 def relatorio_exporta(request, rel_id):
     relatorio = Relatorio.objects.get(id=rel_id)
     circuitos = Circuito.objects.filter(rel_pai__pk=rel_id)
-    imagens = Imagens.objects.filter(rel_pai__pk=rel_id)
+    imagens = Imagem.objects.filter(rel_pai__pk=rel_id)
     byte_io = BytesIO()
     base = settings.PROJECT_PATH
     doc = DocxTemplate(os.path.join(base, "narwhal/assets/template.docx"))

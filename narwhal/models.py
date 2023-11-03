@@ -112,6 +112,6 @@ class Circuito(models.Model):
 
     def __str__(self):
         return self.modelo + ' - ' + self.fase + ' - ' + self.disjuntor + ' - ' + self.descricao + ' - ' + self.condutor + ' - ' + self.corrente
-class Imagens(models.Model):
+class Imagem(models.Model):
     rel_pai = models.ForeignKey(Relatorio, on_delete=models.CASCADE)
     img = models.FileField(upload_to='media/', blank=True, null=True)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from narwhal.models import Relatorio, Circuito, Imagens
+from narwhal.models import Relatorio, Circuito, Imagem
 
 class Relatorios(admin.ModelAdmin):
     list_display = (
@@ -95,6 +95,31 @@ class Relatorios(admin.ModelAdmin):
     list_per_page = 10
 
 
-admin.site.register(Relatorio)
-admin.site.register(Circuito)
-admin.site.register(Imagens)
+admin.site.register(Relatorio, Relatorios)
+
+class Circuitos(admin.ModelAdmin):
+    list_display = (
+    'rel_pai',
+    'modelo',
+    'fase',
+    'disjuntor',
+    'descricao',
+    'condutor',
+    'corrente',
+  )
+    list_filter = ('rel_pai', 'modelo')
+    search_fields = ('rel_pai', 'modelo', 'disjuntor')
+    list_per_page = 10
+
+admin.site.register(Circuito, Circuitos)
+
+class Imagens(admin.ModelAdmin):
+    list_display = (
+    'rel_pai',
+    'img',
+  )
+    list_filter = ('rel_pai',)
+    search_fields = ('rel_pai',)
+    list_per_page = 10
+
+admin.site.register(Imagem, Imagens)
