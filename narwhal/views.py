@@ -1,6 +1,7 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, views
 from narwhal.models import Relatorio, Circuito, Imagem
 from narwhal.serializers import RelatorioSerializer, CircuitoSerializer, ImagemSerializer, ListaImagensPorRelatorioSerializer, ListaCircuitosPorRelatorioSerializer
+from narwhal.utils import relatorio_exporta
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -35,5 +36,13 @@ class ListaCircuitosPorRelatorio(generics.ListAPIView):
         queryset = Circuito.objects.filter(rel_pai__pk=self.kwargs['rel_id'])
         return queryset
     serializer_class = ListaCircuitosPorRelatorioSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class ExportarRelatorio(views.APIView):
+    def post(self, request, rel_id):
+        response = relatorio_exporta(request, rel_id)
+        print (response)
+        return response
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]

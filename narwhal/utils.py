@@ -1,4 +1,6 @@
 import os
+import ast
+from django.conf import settings
 from io import BytesIO
 from django.http import FileResponse
 from docxtpl import DocxTemplate, InlineImage
