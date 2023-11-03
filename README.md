@@ -1,10 +1,10 @@
-# Gerador de Relatórios
+# Narwhal
 
 Este projeto é uma aplicação Web automatizadora do processo de geração laudos de engenheiros eletricistas.
 
 | 🪧Vitrine.Dev |                                              |
 | ------------- | -------------------------------------------- |
-| ✨ Nome       | \*_Gerador de Relatórios_                    |
+| ✨ Nome       | \*_Narwhal_                                  |
 | 🏷 Tecnologias | python, django                               |
 | 🚀 URL        | https://gerador-de-relatorios.herokuapp.com/ |
 | 🔥 Desafio    | https://gerador-de-relatorios.herokuapp.com/ |
