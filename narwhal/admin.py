@@ -3,8 +3,9 @@ from narwhal.models import Relatorio, Circuito, Imagem
 
 class Relatorios(admin.ModelAdmin):
     list_display = (
-    'autor',
+    'id',	
     'data',
+    'autor',
     'local',
     'temperatura',
     'clima',
@@ -91,16 +92,17 @@ class Relatorios(admin.ModelAdmin):
     'ensaiodefunc',
   )
     list_filter = ('local', 'data', 'autor')
+    list_display_links = ('id', 'data')
     search_fields = ('local', 'data', 'autor')
-    list_per_page = 10
+    list_per_page = 20
 
 
 admin.site.register(Relatorio, Relatorios)
 
 class Circuitos(admin.ModelAdmin):
     list_display = (
-    'rel_pai',
     'modelo',
+    'rel_pai',
     'fase',
     'disjuntor',
     'descricao',
@@ -108,6 +110,7 @@ class Circuitos(admin.ModelAdmin):
     'corrente',
   )
     list_filter = ('rel_pai', 'modelo')
+    list_display_links = ('modelo',)
     search_fields = ('rel_pai', 'modelo', 'disjuntor')
     list_per_page = 10
 
@@ -115,10 +118,11 @@ admin.site.register(Circuito, Circuitos)
 
 class Imagens(admin.ModelAdmin):
     list_display = (
-    'rel_pai',
     'img',
+    'rel_pai',
   )
     list_filter = ('rel_pai',)
+    list_display_links = ('img',)
     search_fields = ('rel_pai',)
     list_per_page = 10
 
