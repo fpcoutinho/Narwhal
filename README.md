@@ -4,5 +4,5 @@ Este projeto é uma API rest automatizadora do processo de geração laudos de e
 
 | 🪧Vitrine.Dev |                |
 | ------------- | -------------- |
-| ✨ Nome       | \*_Narwhal_    |
+| ✨ Nome       | **Narwhal**    |
 | 🏷 Tecnologias | python, django |
