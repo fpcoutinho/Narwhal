@@ -7,12 +7,14 @@ class CircuitoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Circuito
         fields = ["modelo", "fase", "disjuntor", "descricao", "condutor", "corrente"]
+        ordering = ["-id"]
 
 
 class ImagemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Imagem
         fields = "__all__"
+        ordering = ["-id"]
 
 
 class RelatorioSerializer(serializers.ModelSerializer):
@@ -30,6 +32,7 @@ class RelatorioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Relatorio
         fields = "__all__"
+        ordering = ["-id"]
 
     def create(self, validated_data):
         imagens_data = []
