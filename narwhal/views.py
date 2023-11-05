@@ -10,7 +10,6 @@ from narwhal.utils import relatorio_exporta
 class RelatorioViewSet(viewsets.ModelViewSet):
     queryset = Relatorio.objects.all()
     serializer_class = RelatorioSerializer
-    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
     filter_backends = [
         DjangoFilterBackend,
@@ -25,14 +24,12 @@ class RelatorioViewSet(viewsets.ModelViewSet):
 class CircuitoViewSet(viewsets.ModelViewSet):
     queryset = Circuito.objects.all()
     serializer_class = CircuitoSerializer
-    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
 
 class ImagemViewSet(viewsets.ModelViewSet):
     queryset = Imagem.objects.all()
     serializer_class = ImagemSerializer
-    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
 
@@ -42,7 +39,6 @@ class ListaImagensPorRelatorio(generics.ListAPIView):
         return queryset
 
     serializer_class = ListaImagensPorRelatorioSerializer
-    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
 
@@ -52,7 +48,6 @@ class ListaCircuitosPorRelatorio(generics.ListAPIView):
         return queryset
 
     serializer_class = ListaCircuitosPorRelatorioSerializer
-    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
 
@@ -62,5 +57,4 @@ class ExportarRelatorio(views.APIView):
         print(response)
         return response
 
-    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
