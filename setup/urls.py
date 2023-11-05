@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 from narwhal.views import (
     RelatorioViewSet,
     CircuitoViewSet,
@@ -9,10 +10,6 @@ from narwhal.views import (
     ListaImagensPorRelatorio,
     ListaCircuitosPorRelatorio,
     ExportarRelatorio,
-)
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
 )
 from rest_framework import routers
 
@@ -23,8 +20,8 @@ router.register("imagens", ImagemViewSet, basename="Imagens")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("auth/", include("auth.urls")),
+    path("", RedirectView.as_view(url="api/")),
     path("api/", include(router.urls)),
     path("api/relatorios/<int:rel_id>/imagens/", ListaImagensPorRelatorio.as_view()),
     path(
