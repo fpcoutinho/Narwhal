@@ -1,5 +1,4 @@
 from rest_framework import viewsets, generics, views, filters
-from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from narwhal.models import Relatorio, Circuito, Imagem
 from narwhal.serializers import *
@@ -9,7 +8,6 @@ from narwhal.utils import relatorio_exporta
 class RelatorioViewSet(viewsets.ModelViewSet):
     queryset = Relatorio.objects.all()
     serializer_class = RelatorioSerializer
-    permission_classes = [IsAuthenticated]
     filter_backends = [
         DjangoFilterBackend,
         filters.OrderingFilter,
@@ -23,13 +21,11 @@ class RelatorioViewSet(viewsets.ModelViewSet):
 class CircuitoViewSet(viewsets.ModelViewSet):
     queryset = Circuito.objects.all()
     serializer_class = CircuitoSerializer
-    permission_classes = [IsAuthenticated]
 
 
 class ImagemViewSet(viewsets.ModelViewSet):
     queryset = Imagem.objects.all()
     serializer_class = ImagemSerializer
-    permission_classes = [IsAuthenticated]
 
 
 class ListaImagensPorRelatorio(generics.ListAPIView):
@@ -38,7 +34,6 @@ class ListaImagensPorRelatorio(generics.ListAPIView):
         return queryset
 
     serializer_class = ListaImagensPorRelatorioSerializer
-    permission_classes = [IsAuthenticated]
 
 
 class ListaCircuitosPorRelatorio(generics.ListAPIView):
@@ -47,7 +42,6 @@ class ListaCircuitosPorRelatorio(generics.ListAPIView):
         return queryset
 
     serializer_class = ListaCircuitosPorRelatorioSerializer
-    permission_classes = [IsAuthenticated]
 
 
 class ExportarRelatorio(views.APIView):
@@ -55,5 +49,3 @@ class ExportarRelatorio(views.APIView):
         response = relatorio_exporta(request, rel_id)
         print(response)
         return response
-
-    permission_classes = [IsAuthenticated]
