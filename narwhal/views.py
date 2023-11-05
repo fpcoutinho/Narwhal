@@ -34,10 +34,32 @@ class CircuitoViewSet(viewsets.ModelViewSet):
     queryset = Circuito.objects.all()
     serializer_class = CircuitoSerializer
 
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = Response(serializer.data, status=status.HTTP_201_CREATED)
+            id = str(serializer.data["id"])
+            response["Location"] = request.build_absolute_uri() + id
+        else:
+            response = Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return response
+
 
 class ImagemViewSet(viewsets.ModelViewSet):
     queryset = Imagem.objects.all()
     serializer_class = ImagemSerializer
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = Response(serializer.data, status=status.HTTP_201_CREATED)
+            id = str(serializer.data["id"])
+            response["Location"] = request.build_absolute_uri() + id
+        else:
+            response = Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return response
 
 
 class ListaImagensPorRelatorio(generics.ListAPIView):
