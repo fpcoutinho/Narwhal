@@ -1,5 +1,4 @@
 from rest_framework import viewsets, generics, views, filters
-from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from narwhal.models import Relatorio, Circuito, Imagem

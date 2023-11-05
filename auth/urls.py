@@ -6,7 +6,11 @@ from auth.views import (
     LogoutView,
     LogoutAllView,
 )
-from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+from rest_framework_simplejwt.views import (
+    TokenRefreshView,
+    TokenObtainPairView,
+    TokenVerifyView,
+)
 
 
 urlpatterns = [
@@ -25,4 +29,5 @@ urlpatterns = [
         UpdateProfileView.as_view(),
         name="auth_update_profile",
     ),
+    path("verify/", TokenVerifyView.as_view(), name="token_verify"),
 ]
