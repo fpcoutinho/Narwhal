@@ -12,92 +12,124 @@ class Relatorio(models.Model):
     responsaveis = models.TextField(blank=True)
 
     # Campos da Avaliação e planejamento da execução.
-    qualificacao_profissional = models.CharField(max_length=255, default="")
-    riscos_detectados = models.CharField(max_length=255, default="[]")
-    equipamentos = models.CharField(max_length=255, default="[]")
-    requer_sinalizacao = models.CharField(max_length=255, default="[]")
-    requer_desligamento_rede = models.CharField(max_length=4, default="")
-    integridade = models.CharField(max_length=4, default="")
-    dialogo_seguranca = models.CharField(max_length=4, default="")
-    curso_nr = models.CharField(max_length=4, default="")
-    servico_conferido = models.CharField(max_length=4, default="")
-    necessita_delimitar_area = models.CharField(max_length=4, default="")
-    necessita_auxilio_concessionaria = models.CharField(max_length=4, default="")
-    tensao = models.CharField(max_length=4, default="")
-    aterramento = models.CharField(max_length=4, default="")
-    altura = models.CharField(max_length=4, default="")
-    cinto_seg = models.CharField(max_length=4, default="")
-    requi_seg = models.CharField(max_length=4, default="")
-    reavaliacao = models.CharField(max_length=4, default="")
+    qualificacao_profissional = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    riscos_detectados = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    equipamentos = models.CharField(max_length=255, default="", blank=True, null=True)
+    requer_sinalizacao = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    requer_desligamento_rede = models.CharField(
+        max_length=4, default="", blank=True, null=True
+    )
+    integridade = models.CharField(max_length=4, default="", blank=True, null=True)
+    dialogo_seguranca = models.CharField(
+        max_length=4, default="", blank=True, null=True
+    )
+    curso_nr = models.CharField(max_length=4, default="", blank=True, null=True)
+    servico_conferido = models.CharField(
+        max_length=4, default="", blank=True, null=True
+    )
+    necessita_delimitar_area = models.CharField(
+        max_length=4, default="", blank=True, null=True
+    )
+    necessita_auxilio_concessionaria = models.CharField(
+        max_length=4, default="", blank=True, null=True
+    )
+    tensao = models.CharField(max_length=4, default="", blank=True, null=True)
+    aterramento = models.CharField(max_length=4, default="", blank=True, null=True)
+    altura = models.CharField(max_length=4, default="", blank=True, null=True)
+    cinto_seg = models.CharField(max_length=4, default="", blank=True, null=True)
+    requi_seg = models.CharField(max_length=4, default="", blank=True, null=True)
+    reavaliacao = models.CharField(max_length=4, default="", blank=True, null=True)
 
     # Campos da Avaliação das influencias externas da instalação elétrica.
-    tempambiente = models.CharField(max_length=255, default="")
-    condambiente = models.CharField(max_length=255, default="")
-    altitude = models.CharField(max_length=255, default="")
-    presagua = models.CharField(max_length=255, default="")
-    pressolidos = models.CharField(max_length=255, default="")
-    pressubst = models.CharField(max_length=255, default="")
-    solmecanicas = models.CharField(max_length=255, default="")
-    presmofo = models.CharField(max_length=255, default="")
-    presfauna = models.CharField(max_length=255, default="")
-    infleletro = models.CharField(max_length=255, default="")
-    radsolar = models.CharField(max_length=255, default="")
-    descatm = models.CharField(max_length=255, default="")
-    movdoar = models.CharField(max_length=255, default="")
-    vento = models.CharField(max_length=255, default="")
-    competencia = models.CharField(max_length=255, default="")
-    reseletr = models.CharField(max_length=255, default="")
-    contpessoas = models.CharField(max_length=255, default="")
-    condfuga = models.CharField(max_length=255, default="")
-    natmatpr = models.CharField(max_length=255, default="")
-    natmatcons = models.CharField(max_length=255, default="")
-    classestr = models.CharField(max_length=255, default="")
+    tempambiente = models.CharField(max_length=255, default="", blank=True, null=True)
+    condambiente = models.CharField(max_length=255, default="", blank=True, null=True)
+    altitude = models.CharField(max_length=255, default="", blank=True, null=True)
+    presagua = models.CharField(max_length=255, default="", blank=True, null=True)
+    pressolidos = models.CharField(max_length=255, default="", blank=True, null=True)
+    pressubst = models.CharField(max_length=255, default="", blank=True, null=True)
+    solmecanicas = models.CharField(max_length=255, default="", blank=True, null=True)
+    presmofo = models.CharField(max_length=255, default="", blank=True, null=True)
+    presfauna = models.CharField(max_length=255, default="", blank=True, null=True)
+    infleletro = models.CharField(max_length=255, default="", blank=True, null=True)
+    radsolar = models.CharField(max_length=255, default="", blank=True, null=True)
+    descatm = models.CharField(max_length=255, default="", blank=True, null=True)
+    movdoar = models.CharField(max_length=255, default="", blank=True, null=True)
+    vento = models.CharField(max_length=255, default="", blank=True, null=True)
+    competencia = models.CharField(max_length=255, default="", blank=True, null=True)
+    reseletr = models.CharField(max_length=255, default="", blank=True, null=True)
+    contpessoas = models.CharField(max_length=255, default="", blank=True, null=True)
+    condfuga = models.CharField(max_length=255, default="", blank=True, null=True)
+    natmatpr = models.CharField(max_length=255, default="", blank=True, null=True)
+    natmatcons = models.CharField(max_length=255, default="", blank=True, null=True)
+    classestr = models.CharField(max_length=255, default="", blank=True, null=True)
 
     # Campos da Avaliação qualitativa da instalação elétrica.
-    documentacao = models.CharField(max_length=255, default="")
-    ambientesofreu = models.CharField(max_length=255, default="")
-    instalacaoinspecionada = models.CharField(max_length=255, default="")
-    linhaseletricasdisp = models.CharField(max_length=255, default="")
-    compinstalacao = models.CharField(max_length=255, default="")
-    linhaseletricascorr = models.CharField(max_length=255, default="")
-    tomadasdeforca = models.CharField(max_length=255, default="")
-    qtdesufitomadas = models.CharField(max_length=255, default="")
-    instlquadist = models.CharField(max_length=255, default="")
-    novoscircuitos = models.CharField(max_length=255, default="")
-    advquadist = models.CharField(max_length=255, default="")
-    dispprotecaoident = models.CharField(max_length=255, default="")
-    protcircuitos = models.CharField(max_length=255, default="")
-    barramentoquadist = models.CharField(max_length=255, default="")
-    bitola = models.CharField(max_length=255, default="")
-    condutident = models.CharField(max_length=255, default="")
-    disjundif = models.CharField(max_length=255, default="")
-    dispprotecaosurtos = models.CharField(max_length=255, default="")
-    servseguranca = models.CharField(max_length=255, default="")
-    esqaterramento = models.CharField(max_length=255, default="")
-    reservadeenergia = models.CharField(max_length=255, default="")
-    fontseguranca = models.CharField(max_length=255, default="")
-    paralelismo = models.CharField(max_length=255, default="")
+    documentacao = models.CharField(max_length=255, default="", blank=True, null=True)
+    ambientesofreu = models.CharField(max_length=255, default="", blank=True, null=True)
+    instalacaoinspecionada = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    linhaseletricasdisp = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    compinstalacao = models.CharField(max_length=255, default="", blank=True, null=True)
+    linhaseletricascorr = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    tomadasdeforca = models.CharField(max_length=255, default="", blank=True, null=True)
+    qtdesufitomadas = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    instlquadist = models.CharField(max_length=255, default="", blank=True, null=True)
+    novoscircuitos = models.CharField(max_length=255, default="", blank=True, null=True)
+    advquadist = models.CharField(max_length=255, default="", blank=True, null=True)
+    dispprotecaoident = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    protcircuitos = models.CharField(max_length=255, default="", blank=True, null=True)
+    barramentoquadist = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    bitola = models.CharField(max_length=255, default="", blank=True, null=True)
+    condutident = models.CharField(max_length=255, default="", blank=True, null=True)
+    disjundif = models.CharField(max_length=255, default="", blank=True, null=True)
+    dispprotecaosurtos = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    servseguranca = models.CharField(max_length=255, default="", blank=True, null=True)
+    esqaterramento = models.CharField(max_length=255, default="", blank=True, null=True)
+    reservadeenergia = models.CharField(
+        max_length=255, default="", blank=True, null=True
+    )
+    fontseguranca = models.CharField(max_length=255, default="", blank=True, null=True)
+    paralelismo = models.CharField(max_length=255, default="", blank=True, null=True)
 
     # Campos da Avaliação quantitativa da instalação elétrica.
-    capbarramento = models.PositiveSmallIntegerField(default=0)
-    protgeral = models.PositiveSmallIntegerField(default=0)
-    protdr = models.PositiveSmallIntegerField(default=0)
-    protdps = models.PositiveSmallIntegerField(default=0)
-    vab = models.PositiveSmallIntegerField(default=0)
-    van = models.PositiveSmallIntegerField(default=0)
-    ia = models.PositiveSmallIntegerField(default=0)
-    vbc = models.PositiveSmallIntegerField(default=0)
-    vbn = models.PositiveSmallIntegerField(default=0)
-    ib = models.PositiveSmallIntegerField(default=0)
-    vca = models.PositiveSmallIntegerField(default=0)
-    vcn = models.PositiveSmallIntegerField(default=0)
-    ic = models.PositiveSmallIntegerField(default=0)
-    continuidade = models.CharField(max_length=255, default="")
-    resistencia = models.CharField(max_length=255, default="")
-    selvpelv = models.CharField(max_length=255, default="")
-    verificacao = models.CharField(max_length=255, default="")
-    ensaiodetensao = models.CharField(max_length=255, default="")
-    ensaiodefunc = models.CharField(max_length=255, default="")
+    capbarramento = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    protgeral = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    protdr = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    protdps = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    vab = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    van = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    ia = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    vbc = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    vbn = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    ib = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    vca = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    vcn = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    ic = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    continuidade = models.CharField(max_length=255, default="", blank=True, null=True)
+    resistencia = models.CharField(max_length=255, default="", blank=True, null=True)
+    selvpelv = models.CharField(max_length=255, default="", blank=True, null=True)
+    verificacao = models.CharField(max_length=255, default="", blank=True, null=True)
+    ensaiodetensao = models.CharField(max_length=255, default="", blank=True, null=True)
+    ensaiodefunc = models.CharField(max_length=255, default="", blank=True, null=True)
 
     def __str__(self):
         return self.local + " - " + str(self.data) + " - " + str(self.autor)
@@ -105,12 +137,12 @@ class Relatorio(models.Model):
 
 class Circuito(models.Model):
     rel_pai = models.ForeignKey(Relatorio, on_delete=models.CASCADE)
-    modelo = models.CharField(max_length=255, default="")
-    fase = models.CharField(max_length=255, default="")
-    disjuntor = models.CharField(max_length=255, default="")
-    descricao = models.CharField(max_length=255, default="")
-    condutor = models.CharField(max_length=255, default="")
-    corrente = models.CharField(max_length=255, default="")
+    modelo = models.CharField(max_length=255, default="", blank=True, null=True)
+    fase = models.CharField(max_length=255, default="", blank=True, null=True)
+    disjuntor = models.CharField(max_length=255, default="", blank=True, null=True)
+    descricao = models.CharField(max_length=255, default="", blank=True, null=True)
+    condutor = models.CharField(max_length=255, default="", blank=True, null=True)
+    corrente = models.CharField(max_length=255, default="", blank=True, null=True)
 
     def __str__(self):
         return (

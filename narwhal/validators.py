@@ -28,7 +28,11 @@ def validate_riscos_detectados(riscos_detectados):
         "Ruído",
         "Choque",
     ]
-    return riscos_detectados in risk
+    riscos_list = riscos_detectados.split(", ")
+    for r in riscos_list:
+        if r not in risk:
+            return False
+    return True
 
 
 def validate_equipamentos(equipamentos):
@@ -42,7 +46,11 @@ def validate_equipamentos(equipamentos):
         "Luva de Borracha Isolante",
         "Cinto de Segurança",
     ]
-    return equipamentos in eqp
+    eqp_list = equipamentos.split(", ")
+    for e in eqp_list:
+        if e not in eqp:
+            return False
+    return True
 
 
 def validate_sinalizacao(sinalizacao):
@@ -54,7 +62,11 @@ def validate_sinalizacao(sinalizacao):
         "Cavaletes",
         "Nenhum",
     ]
-    return sinalizacao in silz
+    silz_list = sinalizacao.split(", ")
+    for s in silz_list:
+        if s not in silz:
+            return False
+    return True
 
 
 def validate_tempambiente(tempambiente):
