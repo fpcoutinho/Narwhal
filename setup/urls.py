@@ -19,7 +19,7 @@ router.register("circuitos", CircuitoViewSet, basename="Circuitos")
 router.register("imagens", ImagemViewSet, basename="Imagens")
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("access/", admin.site.urls),
     path("auth/", include("auth.urls")),
     path("", RedirectView.as_view(url="api/")),
     path("api/", include(router.urls)),

@@ -16,6 +16,7 @@ environ.Env.read_env()
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# For production, set DEBUG = False and set ALLOWED_HOSTS = ["example.com, lochalhost, etc"]
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -46,6 +47,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "setup.urls"
