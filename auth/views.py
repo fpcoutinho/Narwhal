@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import (
@@ -9,6 +10,25 @@ from .serializers import (
     ChangePasswordSerializer,
     UpdateUserSerializer,
 )
+
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        response.set_cookie("access_token", response.data["access"], httponly=True)
+        response.set_cookie("refresh_token", response.data["refresh"], httponly=True)
+        return response
+
+
+class MyTokenRefreshView(TokenRefreshView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        response.set_cookie("access_token", response.data["access"], httponly=True)
+        return response
 
 
 class RegisterView(generics.CreateAPIView):
@@ -38,8 +58,13 @@ class LogoutView(APIView):
             token = RefreshToken(refresh_token)
             token.blacklist()
 
-            return Response(status=status.HTTP_205_RESET_CONTENT)
+            response = Response(status=status.HTTP_205_RESET_CONTENT)
+            response.delete_cookie("access_token")
+            response.delete_cookie("refresh_token")
+
+            return response
         except Exception as e:
+            print(e)
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 

@@ -118,8 +118,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-        "rest_framework.authentication.BasicAuthentication",
+        "auth.authenticate.JWTAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
@@ -129,8 +128,10 @@ REST_FRAMEWORK = {
 
 # JWT settings
 SIMPLE_JWT = {
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
-    "ROTATE_REFRESH_TOKENS": True,
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=20),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": True,
 }
 
 # Internationalization
