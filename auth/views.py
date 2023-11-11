@@ -19,19 +19,15 @@ class RegisterView(generics.CreateAPIView):
 
 class ChangePasswordView(generics.UpdateAPIView):
     queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
     serializer_class = ChangePasswordSerializer
 
 
 class UpdateProfileView(generics.UpdateAPIView):
     queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
     serializer_class = UpdateUserSerializer
 
 
 class LogoutView(APIView):
-    permission_classes = (IsAuthenticated,)
-
     def post(self, request):
         try:
             refresh_token = request.data["refresh_token"]
@@ -44,8 +40,6 @@ class LogoutView(APIView):
 
 
 class LogoutAllView(APIView):
-    permission_classes = (IsAuthenticated,)
-
     def post(self, request):
         tokens = OutstandingToken.objects.filter(user_id=request.user.id)
         for token in tokens:
